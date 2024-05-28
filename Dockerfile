@@ -41,9 +41,9 @@ WORKDIR /app
 
 COPY --from=op /app/op-node/bin/op-node ./
 COPY --from=geth /app/build/bin/geth ./
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY geth-entrypoint .
-COPY op-node-entrypoint .
+RUN cd /etc/supervisor/conf.d/ && wget https://raw.githubusercontent.com/base-org/node/main/supervisord.conf
+RUN wget https://raw.githubusercontent.com/base-org/node/main/geth-entrypoint
+RUN wget https://raw.githubusercontent.com/base-org/node/main/op-node-entrypoint
 RUN mkdir mainnet sepolia
 RUN cd mainnet && wget https://raw.githubusercontent.com/base-org/node/main/mainnet/genesis-l2.json && wget https://raw.githubusercontent.com/base-org/node/main/mainnet/rollup.json
 RUN cd sepolia && wget https://raw.githubusercontent.com/base-org/node/main/sepolia/rollup.json && wget https://raw.githubusercontent.com/base-org/node/main/sepolia/genesis-l2.json
