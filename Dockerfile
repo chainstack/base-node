@@ -1,4 +1,4 @@
-FROM ghcr.io/base-org/node:v0.10.2
+FROM ghcr.io/base-org/node:v0.11.1
 
 USER root
 
